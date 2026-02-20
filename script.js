@@ -95,8 +95,22 @@ function normalizeSong(song) {
             }))
         : [];
 
+    const audioDataUrl = typeof song.audioDataUrl === 'string' && song.audioDataUrl.startsWith('data:audio/')
+        ? song.audioDataUrl
+        : '';
+    const audioMimeType = typeof song.audioMimeType === 'string' && song.audioMimeType.trim()
+        ? song.audioMimeType
+        : '';
+    const audioName = typeof song.audioName === 'string' && song.audioName.trim()
+        ? song.audioName
+        : '';
+
     return {
         ...song,
+        audioFile: typeof song.audioFile === 'string' ? song.audioFile : '',
+        audioDataUrl,
+        audioMimeType,
+        audioName,
         tuning: typeof song.tuning === 'string' && song.tuning.trim() ? song.tuning.trim() : DEFAULT_TUNING,
         capo: sanitizeCapo(song.capo),
         recordings
@@ -115,6 +129,21 @@ function createTakeId() {
         return window.crypto.randomUUID();
     }
     return `take-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+}
+
+function readFileAsDataUrl(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            if (typeof reader.result === 'string') {
+                resolve(reader.result);
+                return;
+            }
+            reject(new Error('Unexpected file result type.'));
+        };
+        reader.onerror = () => reject(new Error('Failed to read file.'));
+        reader.readAsDataURL(file);
+    });
 }
 
 function getDiagramKey(chord) {
@@ -419,6 +448,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const addSongBtn = document.getElementById('add-song-btn');
     const closeModalBtn = document.getElementById('close-modal-btn');
     const songForm = document.getElementById('song-form');
+    const songAudioUploadInput = document.getElementById('song-audio-upload');
+    const songAudioUploadStatus = document.getElementById('song-audio-upload-status');
+    const clearUploadedAudioBtn = document.getElementById('clear-uploaded-audio-btn');
     const searchBar = document.getElementById('search-bar');
     const modalTitle = document.getElementById('modal-title');
     const songFormSubmitBtn = document.getElementById('song-form-submit-btn');
@@ -450,6 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ocrDownloadBtn = document.getElementById('ocr-download-btn');
     const ocrUseInSongBtn = document.getElementById('ocr-use-in-song-btn');
     let ocrCameraStream = null;
+    let modalUploadedAudio = null;
 
     function applyTheme(theme) {
         const isDark = theme === 'dark';
@@ -467,7 +500,51 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(THEME_STORAGE_KEY, theme);
     }
 
+    function setAudioUploadStatus() {
+        if (!songAudioUploadStatus) return;
+
+        if (modalUploadedAudio && modalUploadedAudio.audioName) {
+            songAudioUploadStatus.textContent = `Uploaded audio ready: ${modalUploadedAudio.audioName}`;
+            return;
+        }
+
+        songAudioUploadStatus.textContent = 'No uploaded audio selected.';
+    }
+
+    function resetAudioUploadState() {
+        modalUploadedAudio = null;
+        if (songAudioUploadInput) {
+            songAudioUploadInput.value = '';
+        }
+        setAudioUploadStatus();
+    }
+
+    async function handleAudioUploadSelection(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+        if (!file.type || !file.type.startsWith('audio/')) {
+            alert('Please select an audio file.');
+            event.target.value = '';
+            return;
+        }
+
+        try {
+            const dataUrl = await readFileAsDataUrl(file);
+            modalUploadedAudio = {
+                audioDataUrl: dataUrl,
+                audioMimeType: file.type,
+                audioName: file.name
+            };
+            setAudioUploadStatus();
+        } catch (error) {
+            console.error('Audio upload failed:', error);
+            alert('Could not read the selected audio file.');
+            event.target.value = '';
+        }
+    }
+
     applyTheme(loadTheme());
+    resetAudioUploadState();
 
     // 1. Fetch song data from the JSON file
     loadInitialData();
@@ -501,6 +578,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
         applyTheme(nextTheme);
         saveTheme(nextTheme);
+    });
+
+    songAudioUploadInput.addEventListener('change', (event) => {
+        handleAudioUploadSelection(event);
+    });
+
+    clearUploadedAudioBtn.addEventListener('click', () => {
+        resetAudioUploadState();
     });
 
     pasteUgBtn.addEventListener('click', async () => {
@@ -1051,10 +1136,11 @@ document.addEventListener('DOMContentLoaded', () => {
         audioSection.className = 'audio-section';
 
         // Create audio player if an audio file is specified
-        if (song.audioFile) {
+        const primaryAudioSource = song.audioDataUrl || song.audioFile;
+        if (primaryAudioSource) {
             const audioPlayer = document.createElement('audio');
             audioPlayer.controls = true;
-            audioPlayer.src = song.audioFile;
+            audioPlayer.src = primaryAudioSource;
             audioSection.appendChild(audioPlayer);
         }
 
@@ -1470,6 +1556,17 @@ document.addEventListener('DOMContentLoaded', () => {
             coverArtistNameInput.value = song.artist;
         }
         songForm.audioFile.value = song.audioFile;
+        modalUploadedAudio = song.audioDataUrl
+            ? {
+                audioDataUrl: song.audioDataUrl,
+                audioMimeType: song.audioMimeType || '',
+                audioName: song.audioName || 'uploaded-audio'
+            }
+            : null;
+        if (songAudioUploadInput) {
+            songAudioUploadInput.value = '';
+        }
+        setAudioUploadStatus();
         songForm.tuning.value = song.tuning || DEFAULT_TUNING;
         songForm.capo.value = song.capo !== '' ? song.capo : '';
         songForm.lyrics.value = formatLyricsForTextarea(song.lyrics);
@@ -1492,6 +1589,7 @@ document.addEventListener('DOMContentLoaded', () => {
         songForm.tuning.value = DEFAULT_TUNING;
         coverArtistContainer.style.display = 'none';
         coverArtistNameInput.required = false;
+        resetAudioUploadState();
         addSongModal.style.display = 'flex';
     });
 
@@ -1499,6 +1597,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = () => {
         addSongModal.style.display = 'none';
         songForm.reset();
+        resetAudioUploadState();
     };
     closeModalBtn.addEventListener('click', closeModal);
     addSongModal.addEventListener('click', (event) => {
@@ -1508,7 +1607,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Handle form submission
-    songForm.addEventListener('submit', (event) => {
+    songForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         
         const songIdFromForm = event.target.id.value;
@@ -1518,6 +1617,17 @@ document.addEventListener('DOMContentLoaded', () => {
             artist = event.target.coverArtistName.value;
         }
         const audioFile = event.target.audioFile.value;
+        const uploadedAudio = modalUploadedAudio
+            ? {
+                audioDataUrl: modalUploadedAudio.audioDataUrl,
+                audioMimeType: modalUploadedAudio.audioMimeType || '',
+                audioName: modalUploadedAudio.audioName || 'uploaded-audio'
+            }
+            : {
+                audioDataUrl: '',
+                audioMimeType: '',
+                audioName: ''
+            };
         const tuning = event.target.tuning.value.trim() || DEFAULT_TUNING;
         const capo = sanitizeCapo(event.target.capo.value);
         const lyricsAndChords = event.target.lyrics.value;
@@ -1530,6 +1640,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 songsData[songIndex].title = title;
                 songsData[songIndex].artist = artist;
                 songsData[songIndex].audioFile = audioFile;
+                songsData[songIndex].audioDataUrl = uploadedAudio.audioDataUrl;
+                songsData[songIndex].audioMimeType = uploadedAudio.audioMimeType;
+                songsData[songIndex].audioName = uploadedAudio.audioName;
                 songsData[songIndex].tuning = tuning;
                 songsData[songIndex].capo = capo;
                 songsData[songIndex].lyrics = parseLyricsAndChords(lyricsAndChords);
@@ -1547,6 +1660,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const newSong = {
                 id: newId,
                 title, artist, audioFile, tuning, capo,
+                audioDataUrl: uploadedAudio.audioDataUrl,
+                audioMimeType: uploadedAudio.audioMimeType,
+                audioName: uploadedAudio.audioName,
                 recordings: [],
                 lyrics: parseLyricsAndChords(lyricsAndChords)
             };
@@ -1671,7 +1787,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadInitialData() {
-        // Always load from songs.json on startup.
+        const localDataRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (localDataRaw) {
+            try {
+                const parsed = JSON.parse(localDataRaw);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    songsData = parsed.map(normalizeSong);
+                    const validSongIds = new Set(songsData.map(song => song.id));
+                    setlistSongIds = setlistSongIds.filter(id => validSongIds.has(id));
+                    generateTableOfContents(songsData);
+                    renderSetlist();
+                    saveSetlist();
+                    return;
+                }
+            } catch (error) {
+                console.warn('Failed to parse local songbook data. Falling back to songs.json.', error);
+            }
+        }
+
         fetchDefaultSongs();
     }
 

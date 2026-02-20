@@ -68,6 +68,10 @@
                 </div>
                 <label for="song-audio">Audio File Path (e.g., audio/song.mp3):</label>
                 <input type="text" id="song-audio" name="audioFile">
+                <label for="song-audio-upload">Or Upload Audio File:</label>
+                <input type="file" id="song-audio-upload" accept="audio/*">
+                <p id="song-audio-upload-status" class="audio-upload-status">No uploaded audio selected.</p>
+                <button type="button" id="clear-uploaded-audio-btn" class="ocr-secondary">Clear Uploaded Audio</button>
 
                 <label for="song-tuning">Tuning (e.g., Standard, DADGAD):</label>
                 <input type="text" id="song-tuning" name="tuning">

@@ -91,7 +91,7 @@
         "text": ""
       },
       {
-        "chords": "Gbar Bbar Cbar Cmbar",
+        "chords": "GBar BBar CBar CmBar",
         "text": " "
       },
       {
@@ -99,19 +99,19 @@
         "text": ""
       },
       {
-        "chords": "                     Gbar                              Bbar",
+        "chords": "                     GBar                              BBar",
         "text": "When you were here before, couldn't look you in the eyes"
       },
       {
-        "chords": "                    Cbar                         Cmbar",
+        "chords": "                    CBar                         CmBar",
         "text": "You're just like an angel, your skin makes me cry"
       },
       {
-        "chords": "                 Gbar                      Bbar",
+        "chords": "                 GBar                      BBar",
         "text": "You float like a feather in a beautiful world"
       },
       {
-        "chords": "             Cbar                          Cmbar",
+        "chords": "             CBar                          CmBar",
         "text": "I wish I was special, you're so fucking special"
       },
       {
@@ -123,15 +123,15 @@
         "text": " (play loud)"
       },
       {
-        "chords": "Cmbar",
+        "chords": "CmBar",
         "text": "(x3, very short)"
       },
       {
-        "chords": "          Gbar            Bbar",
+        "chords": "          GBar            BBar",
         "text": "But I'm a creep, I'm a weirdo"
       },
       {
-        "chords": "                         Cbar               Cmbar",
+        "chords": "                         CBar               CmBar",
         "text": "What the hell am I doing here? I don't belong here"
       },
       {
@@ -143,19 +143,19 @@
         "text": ""
       },
       {
-        "chords": "                   Gbar                      Bbar",
+        "chords": "                   GBar                      BBar",
         "text": "I don't care if it hurts, I wanna have control"
       },
       {
-        "chords": "                 Cbar                      Cmbar",
+        "chords": "                 CBar                      CmBar",
         "text": "I want a perfect body, I want a perfect soul"
       },
       {
-        "chords": "              Gbar                    Bbar",
+        "chords": "              GBar                    BBar",
         "text": "I want you to notice when I'm not around"
       },
       {
-        "chords": "                  Cbar                     Cmbar",
+        "chords": "                  CBar                     CmBar",
         "text": "You're so fucking special, I wish I was special"
       },
       {
@@ -167,15 +167,15 @@
         "text": " (play loud)"
       },
       {
-        "chords": "Cmbar",
+        "chords": "CmBar",
         "text": "(x3, very short)"
       },
       {
-        "chords": "          Gbar            Bbar",
+        "chords": "          GBar            BBar",
         "text": "But I'm a creep, I'm a weirdo"
       },
       {
-        "chords": "                         Cbar               Cmbar",
+        "chords": "                         CBar               CmBar",
         "text": "What the hell am I doing here? I don't belong here"
       },
       {
@@ -187,19 +187,19 @@
         "text": " (play loud)"
       },
       {
-        "chords": "            Gbar                     Bbar",
+        "chords": "            GBar                     BBar",
         "text": "Oooh, oooh, she's running out the door..."
       },
       {
-        "chords": "Cbar                      Cmbar",
+        "chords": "CBar                      CmBar",
         "text": "She's running out, she run, run, run..."
       },
       {
-        "chords": "Gbar     Bbar",
+        "chords": "GBar     BBar",
         "text": "Ruuuuuuuun..."
       },
       {
-        "chords": "Cbar     Cmbar",
+        "chords": "CBar     CmBar",
         "text": "Ruuuuuuuuuuun..."
       },
       {
@@ -211,11 +211,11 @@
         "text": " (play soft until the end)"
       },
       {
-        "chords": "                   Gbar                   Bbar",
+        "chords": "                   GBar                   BBar",
         "text": "Whatever makes you happy, whatever you want"
       },
       {
-        "chords": "                  Cbar                     Cmbar",
+        "chords": "                  CBar                     CmBar",
         "text": "You're so fucking special, I wish I was special"
       },
       {
@@ -227,15 +227,15 @@
         "text": ""
       },
       {
-        "chords": "          Gbar            Bbar",
+        "chords": "          GBar            BBar",
         "text": "But I'm a creep, I'm a weirdo"
       },
       {
-        "chords": "                         Cbar               Cmbar",
+        "chords": "                         CBar               CmBar",
         "text": "What the hell am I doing here? I don't belong here"
       },
       {
-        "chords": "          Gbar",
+        "chords": "          GBar",
         "text": "I don't belong here"
       }
     ]
@@ -608,3 +608,4 @@
     ]
   }
 ]
+

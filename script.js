@@ -123,14 +123,23 @@ function getDiagramKey(chord) {
     if (!match) return null;
 
     const root = match[1];
-    const rawSuffix = (match[2] || '').trim().toLowerCase();
-    if (!rawSuffix || rawSuffix === 'maj') return `${root}:major`;
-    if (rawSuffix === 'm' || rawSuffix === 'min' || rawSuffix === '-') return `${root}:minor`;
-    if (rawSuffix === '7') return `${root}:7`;
-    if (rawSuffix === 'm7' || rawSuffix === 'min7' || rawSuffix === '-7') return `${root}:m7`;
-    if (rawSuffix === 'maj7' || rawSuffix === 'ma7' || rawSuffix === 'm7+') return `${root}:maj7`;
+    const rawSuffix = (match[2] || '').trim();
+    const tokenizedSuffix = rawSuffix.toLowerCase().replace(/[^a-z0-9#+-]+/g, ' ').trim();
+    const hasBarre = /\bbarre\b|\bbar\b/.test(tokenizedSuffix);
+    const compactSuffix = rawSuffix
+        .toLowerCase()
+        .replace(/barre|bar/g, '')
+        .replace(/[^a-z0-9#+-]/g, '');
 
-    return `${root}:unknown`;
+    const suffix = compactSuffix;
+    let quality = 'unknown';
+    if (!suffix || suffix === 'maj') quality = 'major';
+    else if (suffix === 'm' || suffix === 'min' || suffix === '-') quality = 'minor';
+    else if (suffix === '7') quality = '7';
+    else if (suffix === 'm7' || suffix === 'min7' || suffix === '-7') quality = 'm7';
+    else if (suffix === 'maj7' || suffix === 'ma7' || suffix === 'm7+') quality = 'maj7';
+
+    return `${root}:${quality}:${hasBarre ? 'barre' : 'auto'}`;
 }
 
 function normalizeRootToSharp(root) {
@@ -172,11 +181,42 @@ function buildMovableAShapeDiagram(root, quality) {
     return strings.map((s, i) => `${s}|--${printable[i]}--`).join('\n');
 }
 
+function buildMovableEShapeDiagram(root, quality) {
+    const shapeOffsets = {
+        major: [0, 2, 2, 1, 0, 0],
+        minor: [0, 2, 2, 0, 0, 0],
+        '7': [0, 2, 0, 1, 0, 0],
+        maj7: [0, 2, 1, 1, 0, 0],
+        m7: [0, 2, 0, 0, 0, 0]
+    };
+
+    const offsets = shapeOffsets[quality];
+    if (!offsets) return null;
+
+    const chromatic = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
+    const normalizedRoot = normalizeRootToSharp(root);
+    const rootIndex = chromatic.indexOf(normalizedRoot);
+    const openEIndex = chromatic.indexOf('E');
+    if (rootIndex === -1 || openEIndex === -1) return null;
+
+    const rootFret = (rootIndex - openEIndex + 12) % 12;
+    const frets = offsets.map(offset => String(rootFret + offset));
+    const strings = ['e', 'B', 'G', 'D', 'A', 'E'];
+
+    // Frets are generated in EADGBe order, so reverse when printing.
+    const printable = [
+        frets[5], frets[4], frets[3], frets[2], frets[1], frets[0]
+    ];
+
+    return strings.map((s, i) => `${s}|--${printable[i]}--`).join('\n');
+}
+
 function getChordDiagram(chord) {
     const key = getDiagramKey(chord);
     if (!key) return null;
 
-    const [root, quality] = key.split(':');
+    const [root, quality, shapeMode] = key.split(':');
+    const wantsBarre = shapeMode === 'barre';
     const legacyKey =
         quality === 'major' ? root :
         quality === 'minor' ? `${root}m` :
@@ -185,20 +225,23 @@ function getChordDiagram(chord) {
         quality === 'maj7' ? `${root}maj7` :
         null;
 
-    if (legacyKey && CHORD_DIAGRAMS[legacyKey]) {
+    if (!wantsBarre && legacyKey && CHORD_DIAGRAMS[legacyKey]) {
         return {
             label: legacyKey,
             diagram: CHORD_DIAGRAMS[legacyKey]
         };
     }
 
-    const generated = buildMovableAShapeDiagram(root, quality);
+    const generated = wantsBarre
+        ? buildMovableEShapeDiagram(root, quality)
+        : buildMovableAShapeDiagram(root, quality);
     if (!generated) return null;
 
-    const label =
+    const baseLabel =
         quality === 'major' ? root :
         quality === 'minor' ? `${root}m` :
         `${root}${quality}`;
+    const label = wantsBarre ? `${baseLabel} (barre)` : baseLabel;
 
     return {
         label,

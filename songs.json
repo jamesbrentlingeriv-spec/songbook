@@ -1,0 +1,610 @@
+[
+  {
+    "id": "amazing-grace",
+    "title": "Amazing Grace",
+    "artist": "John Newton",
+    "audioFile": "audio/amazing_grace.mp3",
+    "tuning": "Standard",
+    "capo": 0,
+    "lyrics": [
+      {
+        "chords": "G         C        G",
+        "text": "Amazing grace how sweet the sound"
+      },
+      {
+        "chords": "          D",
+        "text": "That saved a wretch like me"
+      },
+      {
+        "chords": "G           C         G",
+        "text": "I once was lost, but now I'm found"
+      },
+      {
+        "chords": "          D       G",
+        "text": "Was blind but now I see"
+      }
+    ],
+    "recordings": []
+  },
+  {
+    "id": "hallelujah",
+    "title": "Hallelujah",
+    "artist": "Leonard Cohen",
+    "audioFile": "audio/another_song.mp3",
+    "tuning": "Standard",
+    "capo": 2,
+    "lyrics": [
+      {
+        "chords": "C               Am",
+        "text": "I've heard there was a secret chord"
+      },
+      {
+        "chords": "C                  Am",
+        "text": "That David played and it pleased the Lord"
+      },
+      {
+        "chords": "F                  G                C     G",
+        "text": "But you don't really care for music, do you?"
+      }
+    ],
+    "recordings": []
+  },
+  {
+    "id": "creep",
+    "title": "Creep",
+    "artist": "Radiohead",
+    "audioFile": "",
+    "tuning": "Whole Step Down",
+    "capo": 2,
+    "recordings": [],
+    "lyrics": [
+      {
+        "chords": "",
+        "text": "Tuning: E A D G B EKey: GCapo: No capo"
+      },
+      {
+        "chords": "",
+        "text": "G     3-5-5-4-3-3"
+      },
+      {
+        "chords": "",
+        "text": "B     7-9-9-8-7-7"
+      },
+      {
+        "chords": "",
+        "text": "C     8-10-10-9-8-8"
+      },
+      {
+        "chords": "",
+        "text": "Cm    8-10-10-8-8-8"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Intro",
+        "text": ""
+      },
+      {
+        "chords": "G B C Cm",
+        "text": " "
+      },
+      {
+        "chords": "Verse 1",
+        "text": ""
+      },
+      {
+        "chords": "                     G                              B",
+        "text": "When you were here before, couldn't look you in the eyes"
+      },
+      {
+        "chords": "                    C                         Cm",
+        "text": "You're just like an angel, your skin makes me cry"
+      },
+      {
+        "chords": "                 G                      B",
+        "text": "You float like a feather in a beautiful world"
+      },
+      {
+        "chords": "             C                          Cm",
+        "text": "I wish I was special, you're so fucking special"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Chorus",
+        "text": " (play loud)"
+      },
+      {
+        "chords": "Cm",
+        "text": "(x3, very short)"
+      },
+      {
+        "chords": "          G            B",
+        "text": "But I'm a creep, I'm a weirdo"
+      },
+      {
+        "chords": "                         C               Cm",
+        "text": "What the hell am I doing here? I don't belong here"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Verse 2",
+        "text": ""
+      },
+      {
+        "chords": "                   G                      B",
+        "text": "I don't care if it hurts, I wanna have control"
+      },
+      {
+        "chords": "                 C                      Cm",
+        "text": "I want a perfect body, I want a perfect soul"
+      },
+      {
+        "chords": "              G                    B",
+        "text": "I want you to notice when I'm not around"
+      },
+      {
+        "chords": "                  C                     Cm",
+        "text": "You're so fucking special, I wish I was special"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Chorus",
+        "text": " (play loud)"
+      },
+      {
+        "chords": "Cm",
+        "text": "(x3, very short)"
+      },
+      {
+        "chords": "          G            B",
+        "text": "But I'm a creep, I'm a weirdo"
+      },
+      {
+        "chords": "                         C               Cm",
+        "text": "What the hell am I doing here? I don't belong here"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Bridge",
+        "text": " (play loud)"
+      },
+      {
+        "chords": "            G                     B",
+        "text": "Oooh, oooh, she's running out the door..."
+      },
+      {
+        "chords": "C                      Cm",
+        "text": "She's running out, she run, run, run..."
+      },
+      {
+        "chords": "G     B",
+        "text": "Ruuuuuuuun..."
+      },
+      {
+        "chords": "C     Cm",
+        "text": "Ruuuuuuuuuuun..."
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Verse 3",
+        "text": " (play soft until the end)"
+      },
+      {
+        "chords": "                   G                   B",
+        "text": "Whatever makes you happy, whatever you want"
+      },
+      {
+        "chords": "                  C                     Cm",
+        "text": "You're so fucking special, I wish I was special"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Chorus",
+        "text": ""
+      },
+      {
+        "chords": "          G            B",
+        "text": "But I'm a creep, I'm a weirdo"
+      },
+      {
+        "chords": "                         C               Cm",
+        "text": "What the hell am I doing here? I don't belong here"
+      },
+      {
+        "chords": "          G",
+        "text": "I don't belong here"
+      }
+    ]
+  },
+  {
+    "id": "eminence-front",
+    "title": "Eminence Front",
+    "artist": "The Who",
+    "audioFile": "",
+    "tuning": "Whole Step Down",
+    "capo": 3,
+    "recordings": [],
+    "lyrics": [
+      {
+        "chords": "",
+        "text": "X"
+      },
+      {
+        "chords": "",
+        "text": "Eminence Front Chords by The Who"
+      },
+      {
+        "chords": "",
+        "text": "Description: This is based on the studio recorded version of the song, from the album It's Hard."
+      },
+      {
+        "chords": "",
+        "text": "Difficulty: intermediate"
+      },
+      {
+        "chords": "",
+        "text": "Tuning: E A D G B E"
+      },
+      {
+        "chords": "",
+        "text": "Capo: 1st fret"
+      },
+      {
+        "chords": "",
+        "text": "Key: Fm"
+      },
+      {
+        "chords": "",
+        "text": "Chords"
+      },
+      {
+        "chords": "",
+        "text": "Em"
+      },
+      {
+        "chords": "",
+        "text": "Cmaj7"
+      },
+      {
+        "chords": "",
+        "text": "G"
+      },
+      {
+        "chords": "",
+        "text": "D"
+      },
+      {
+        "chords": "",
+        "text": "A"
+      },
+      {
+        "chords": "",
+        "text": "E"
+      },
+      {
+        "chords": "B7sus4",
+        "text": "[Intro]"
+      },
+      {
+        "chords": "",
+        "text": "| Em  | Em  | Em  | Em  | Em  | Em  |"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": "| Em  | Em  | Cmaj7  | Cmaj7  |  8x"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Verse 1",
+        "text": ""
+      },
+      {
+        "chords": "    Em",
+        "text": "The sun shines"
+      },
+      {
+        "chords": "              Cmaj7",
+        "text": "And people forget"
+      },
+      {
+        "chords": "      Em",
+        "text": "The spray flies as the speedboat glides"
+      },
+      {
+        "chords": "              Cmaj7",
+        "text": "And people forget"
+      },
+      {
+        "chords": "                Cmaj7",
+        "text": "Forget they're hiding"
+      },
+      {
+        "chords": "     Em",
+        "text": "The girls smile"
+      },
+      {
+        "chords": "              Cmaj7",
+        "text": "And people forget"
+      },
+      {
+        "chords": "     Em",
+        "text": "The snow packs as the skier tracks"
+      },
+      {
+        "chords": "              Cmaj7",
+        "text": "And people forget"
+      },
+      {
+        "chords": "Cmaj7",
+        "text": " Forget they're hiding"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Chorus",
+        "text": ""
+      },
+      {
+        "chords": "Em",
+        "text": " Behind an eminence front"
+      },
+      {
+        "chords": "                             Cmaj7",
+        "text": "Eminence front, it's a put on"
+      },
+      {
+        "chords": "Em",
+        "text": " It's an eminence front"
+      },
+      {
+        "chords": "                                      Cmaj7",
+        "text": "It's an eminence front, it's a put on"
+      },
+      {
+        "chords": "",
+        "text": "Page 1/3"
+      },
+      {
+        "chords": "Em",
+        "text": " An eminence front"
+      },
+      {
+        "chords": "                             Cmaj7",
+        "text": "Eminence front, it's a put on, eminence front"
+      },
+      {
+        "chords": "Em",
+        "text": " It's an eminence front"
+      },
+      {
+        "chords": "                                      Cmaj7",
+        "text": "It's an eminence front, it's a put on"
+      },
+      {
+        "chords": "             Cmaj7",
+        "text": "It's a put on, it's a put on, it's a put on"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": "| G  D   A  | G  D   E |"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Post-Chorus",
+        "text": ""
+      },
+      {
+        "chords": "Em                               Cmaj7",
+        "text": "Come on join the party, dress to kill"
+      },
+      {
+        "chords": "           Em                              Cmaj7",
+        "text": "Won't you come and join the party dress to kill"
+      },
+      {
+        "chords": "          B7sus4",
+        "text": "Dress to kill"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Verse 2",
+        "text": ""
+      },
+      {
+        "chords": "      Em",
+        "text": "The drinks flow"
+      },
+      {
+        "chords": "         Cmaj7",
+        "text": "People forget"
+      },
+      {
+        "chords": "      Em",
+        "text": "That big wheel spins, the hair thins"
+      },
+      {
+        "chords": "        Cmaj7",
+        "text": "People forget"
+      },
+      {
+        "chords": "                Cmaj7",
+        "text": "Forget they're hiding"
+      },
+      {
+        "chords": "     Em",
+        "text": "The news slows"
+      },
+      {
+        "chords": "         Cmaj7",
+        "text": "People forget"
+      },
+      {
+        "chords": "      Em",
+        "text": "The shares crash, hopes are dashed"
+      },
+      {
+        "chords": "        Cmaj7",
+        "text": "People forget"
+      },
+      {
+        "chords": "                Cmaj7",
+        "text": "Forget they're hiding"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Chorus",
+        "text": ""
+      },
+      {
+        "chords": "Em",
+        "text": " Behind an eminence front"
+      },
+      {
+        "chords": "                             Cmaj7",
+        "text": "Eminence front, it's a put on"
+      },
+      {
+        "chords": "Em",
+        "text": " It's just an eminence front"
+      },
+      {
+        "chords": "                                Cmaj7",
+        "text": "An eminence front, it's a put on"
+      },
+      {
+        "chords": "",
+        "text": "Page 2/3"
+      },
+      {
+        "chords": "Em",
+        "text": " An eminence front"
+      },
+      {
+        "chords": "                                Cmaj7",
+        "text": "An eminence front, it's a put on"
+      },
+      {
+        "chords": "Em",
+        "text": " Eminence front"
+      },
+      {
+        "chords": "                                     Cmaj7",
+        "text": "It's an eminence front, it's a put on"
+      },
+      {
+        "chords": "                            Cmaj7",
+        "text": "It's a put on, it's a put on, it's a put on"
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "",
+        "text": " "
+      },
+      {
+        "chords": "Outro",
+        "text": ""
+      },
+      {
+        "chords": "Em",
+        "text": "Come and join the party, dress to"
+      },
+      {
+        "chords": "Cmaj7",
+        "text": "Come and join the party, dress to"
+      },
+      {
+        "chords": "Em",
+        "text": "Come on join the party, dress to"
+      },
+      {
+        "chords": "Cmaj7                             B7sus4",
+        "text": "Come on join the party, dress to kill"
+      },
+      {
+        "chords": "                        Em",
+        "text": "Dress yourself to kill"
+      },
+      {
+        "chords": "",
+        "text": "Page 3/3"
+      },
+      {
+        "chords": "",
+        "text": ""
+      }
+    ]
+  }
+]

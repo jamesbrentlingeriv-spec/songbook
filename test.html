@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Google Vision API Key Tester</h2>
+    <button onclick="testKey()">Test My Key Now</button>
+    <p id="result">Click the button to verify connection...</p>
+
+    <script>
+        async function testKey() {
+            const key = 'AIzaSyBJIqWPJSHRrsVM1kncNvnaYj1UUZ4w0CI'; // Your current key
+            const url = `https://vision.googleapis.com/v1/images:annotate?key=${key}`;
+            const status = document.getElementById('result');
+            
+            status.innerText = "Connecting to Google...";
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        requests: [{
+                            image: { content: "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" }, // Tiny blank image
+                            features: [{ type: "LABEL_DETECTION", maxResults: 1 }]
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    status.style.color = "green";
+                    status.innerText = "SUCCESS: Your API key is working perfectly!";
+                } else {
+                    status.style.color = "red";
+                    status.innerText = `FAILED: ${data.error.message} (Error Code: ${data.error.code})`;
+                }
+            } catch (err) {
+                status.innerText = "Network Error: Could not reach Google. Check your internet.";
+            }
+        }
+    </script>
+</body>
+</html>

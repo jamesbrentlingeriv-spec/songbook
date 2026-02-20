@@ -1,0 +1,853 @@
+/* General Body and Layout */
+:root {
+    --rainbow-red: #e53935;
+    --rainbow-orange: #fb8c00;
+    --rainbow-yellow: #fdd835;
+    --rainbow-green: #43a047;
+    --rainbow-blue: #1e88e5;
+    --rainbow-indigo: #3949ab;
+    --rainbow-violet: #8e24aa;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: #fff;
+    color: #000;
+}
+
+.songbook-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--rainbow-red), var(--rainbow-orange), var(--rainbow-yellow), var(--rainbow-green), var(--rainbow-blue), var(--rainbow-indigo), var(--rainbow-violet)) 1;
+    padding-bottom: 10px;
+}
+
+.sidebar #search-bar {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+}
+
+.theme-toggle-button {
+    width: 38px;
+    height: 22px;
+    margin-bottom: 10px;
+    background-color: #d0d0d0;
+    border: 1px solid #bdbdbd;
+    border-radius: 999px;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    vertical-align: middle;
+}
+
+.theme-toggle-knob {
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border: 1px solid #c7c7c7;
+    border-radius: 50%;
+    margin-left: 2px;
+    transition: transform 0.15s ease;
+}
+
+.theme-toggle-button[aria-pressed="true"] {
+    background-color: #000;
+    border-color: #333;
+}
+
+.theme-toggle-button[aria-pressed="true"] .theme-toggle-knob {
+    transform: translateX(16px);
+    border-color: #444;
+}
+
+.add-song-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: var(--rainbow-red);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.import-songs-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--rainbow-orange);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.export-songs-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--rainbow-yellow);
+    color: #222;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.song-display {
+    flex-grow: 1;
+    padding: 40px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+/* Table of Contents */
+#table-of-contents {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-group {
+    margin-bottom: 10px;
+}
+
+.toc-group-title {
+    font-size: 0.95rem;
+    margin: 8px 0 6px 0;
+    color: var(--rainbow-indigo);
+}
+
+.toc-sublist {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cover-artist-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cover-artist-group {
+    border: 1px solid #ececec;
+    border-radius: 6px;
+    padding: 4px 6px;
+    background-color: #fff;
+}
+
+.cover-artist-group summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--rainbow-green);
+}
+
+#table-of-contents li a, #setlist-contents li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--rainbow-blue);
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+#table-of-contents li a:hover, #setlist-contents li a:hover {
+    background-color: #e9ecef;
+}
+
+.setlist-heading {
+    margin-top: 20px;
+}
+
+#setlist-contents {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.toc-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toc-row a {
+    flex: 1;
+}
+
+.toc-copy-button,
+.setlist-remove-button {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 0.85rem;
+}
+
+.setlist-remove-button {
+    color: var(--rainbow-red);
+    border-color: #f4c7c6;
+}
+
+.setlist-empty {
+    margin: 8px 0 12px 0;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.setlist-toggle-button {
+    background-color: var(--rainbow-green);
+    color: #fff;
+    border: 1px solid #2f7d33;
+    padding: 0 15px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    height: 35px;
+    cursor: pointer;
+    line-height: 35px;
+}
+
+/* Song Display Styles */
+.song-header h1 {
+    margin-bottom: 5px;
+}
+
+.song-header h3 {
+    margin-top: 0;
+    font-weight: normal;
+    color: var(--rainbow-indigo);
+    margin-bottom: 8px;
+}
+
+.song-meta {
+    margin: 0 0 24px 0;
+    color: var(--rainbow-violet);
+    font-size: 0.95rem;
+}
+
+audio {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.audio-section {
+    margin-bottom: 24px;
+}
+
+.recording-panel {
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 12px;
+    background-color: #fafbfc;
+}
+
+.recording-panel h4 {
+    margin: 0 0 6px 0;
+}
+
+.recording-hint {
+    margin: 0 0 10px 0;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.recording-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.recording-controls button {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.recording-controls .record-button {
+    background-color: var(--rainbow-red);
+    border-color: #bb2d2a;
+    color: #fff;
+}
+
+.recording-controls .stop-record-button {
+    background-color: var(--rainbow-violet);
+    border-color: #6d1b7b;
+    color: #fff;
+}
+
+.record-status {
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.record-timer {
+    min-width: 40px;
+}
+
+.takes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.takes-empty {
+    margin: 0;
+    color: #666;
+}
+
+.take-row {
+    border: 1px solid #e3e7eb;
+    border-radius: 6px;
+    background-color: #fff;
+    padding: 8px;
+}
+
+.take-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.take-row audio {
+    margin-bottom: 8px;
+}
+
+.take-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.take-actions button {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.placeholder {
+    text-align: center;
+    margin-top: 100px;
+    color: #888;
+}
+
+/* Core Lyric and Chord Styling */
+.lyrics-container {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    line-height: 2.5;
+}
+
+.lyric-line {
+    margin-bottom: 15px;
+    white-space: pre; /* Preserves spaces for alignment */
+}
+
+body:not(.dark-mode) .lyrics-container .text {
+    font-weight: 700;
+}
+
+.chords {
+    font-weight: bold;
+    color: var(--rainbow-violet);
+}
+
+.chord-token {
+    position: relative;
+    cursor: help;
+}
+
+.chord-tooltip {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%);
+    background-color: #fff;
+    color: #111;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    white-space: pre;
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.chord-token:hover .chord-tooltip {
+    display: block;
+}
+
+/* Transpose Controls */
+.transpose-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #fff2f2, #fff7e8, #fffde9, #eefaf0, #edf6ff, #f1f1ff, #faf0ff);
+    padding: 10px 15px;
+    border-radius: 8px;
+    max-width: 300px;
+}
+
+.transpose-controls button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+}
+
+.transpose-controls span {
+    font-weight: 500;
+    min-width: 110px; /* To prevent layout shift */
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* A container for all song-specific controls */
+.song-controls-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Auto-Scroll Controls */
+.scroll-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #faf0ff, #f1f1ff, #edf6ff, #eefaf0, #fffde9, #fff7e8, #fff2f2);
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.scroll-controls button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    padding: 0;
+    line-height: 35px; /* Helps center symbols vertically */
+}
+
+.scroll-controls #scroll-toggle {
+    width: 80px;
+    border-radius: 18px;
+}
+
+.scroll-controls span, .scroll-controls strong {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.edit-song-button {
+    background-color: var(--rainbow-blue);
+    color: #fff;
+    border: 1px solid #1565c0;
+    padding: 0 15px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    height: 35px;
+    cursor: pointer;
+    line-height: 35px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    color: #000;
+    padding: 20px 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+/* Form Styles */
+#song-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#song-form input[type="text"],
+#song-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important for padding and width */
+}
+
+#song-form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--rainbow-indigo);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.ocr-tool-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--rainbow-blue);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#song-form .paste-ug-button {
+    margin-top: 10px;
+    background-color: var(--rainbow-orange);
+    color: #111;
+}
+
+.ocr-modal-content {
+    max-width: 900px;
+}
+
+.ocr-subtitle {
+    margin-top: 0;
+    color: #444;
+}
+
+.ocr-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.ocr-controls input[type="file"] {
+    flex: 1;
+    min-width: 220px;
+}
+
+#ocr-camera-view {
+    margin-bottom: 12px;
+}
+
+#ocr-video-stream {
+    width: 100%;
+    max-height: 360px;
+    border-radius: 8px;
+    background-color: #000;
+}
+
+.ocr-camera-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+.ocr-status {
+    font-size: 0.92rem;
+    color: #444;
+    margin: 8px 0;
+}
+
+#ocr-preview-container {
+    margin-bottom: 12px;
+}
+
+.ocr-preview-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.ocr-preview-head h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+#ocr-preview-canvas {
+    width: 100%;
+    max-height: 320px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #000;
+    object-fit: contain;
+}
+
+#ocr-output-area {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.96rem;
+    line-height: 1.45;
+    margin-top: 8px;
+}
+
+.ocr-action-bar {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.ocr-action-bar button {
+    border: none;
+    border-radius: 6px;
+    padding: 9px 12px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    font-weight: 600;
+    background-color: var(--rainbow-orange);
+    color: #111;
+}
+
+.ocr-action-bar .ocr-primary {
+    background-color: var(--rainbow-indigo);
+    color: #fff;
+}
+
+.ocr-action-bar .ocr-secondary {
+    background-color: #777;
+    color: #fff;
+}
+
+.ocr-action-bar .ocr-success {
+    background-color: var(--rainbow-green);
+    color: #fff;
+}
+
+body.dark-mode {
+    background-color: #000;
+    color: #fff;
+}
+
+body.dark-mode .sidebar,
+body.dark-mode .song-display,
+body.dark-mode .modal-content,
+body.dark-mode .recording-panel,
+body.dark-mode .take-row,
+body.dark-mode .transpose-controls,
+body.dark-mode .scroll-controls {
+    background-color: #000;
+    color: #fff;
+    border-color: #333;
+}
+
+body.dark-mode .sidebar {
+    border-right-color: #333;
+}
+
+body.dark-mode .sidebar h2 {
+    border-bottom-color: #333;
+}
+
+body.dark-mode .toc-group-title {
+    color: #c7d4ff;
+}
+
+body.dark-mode .cover-artist-group {
+    background-color: #000;
+    border-color: #333;
+}
+
+body.dark-mode .cover-artist-group summary {
+    color: #9be49e;
+}
+
+body.dark-mode #table-of-contents li a,
+body.dark-mode #setlist-contents li a {
+    color: #8bbcff;
+}
+
+body.dark-mode #table-of-contents li a:hover,
+body.dark-mode #setlist-contents li a:hover {
+    background-color: #111;
+}
+
+body.dark-mode .song-header h3,
+body.dark-mode .song-meta,
+body.dark-mode .recording-hint,
+body.dark-mode .record-status,
+body.dark-mode .takes-empty,
+body.dark-mode .setlist-empty,
+body.dark-mode .placeholder {
+    color: #ddd;
+}
+
+body.dark-mode .toc-copy-button,
+body.dark-mode .setlist-remove-button,
+body.dark-mode .recording-controls button,
+body.dark-mode .take-actions button,
+body.dark-mode .transpose-controls button,
+body.dark-mode .scroll-controls button,
+body.dark-mode .edit-song-button,
+body.dark-mode .setlist-toggle-button {
+    background-color: #000;
+    color: #fff;
+    border-color: #333;
+}
+
+body.dark-mode .recording-controls .record-button {
+    background-color: #000;
+    border-color: #ff4d4d;
+    color: #ffb3b3;
+}
+
+body.dark-mode .recording-controls .stop-record-button {
+    background-color: #000;
+    border-color: #aaa;
+    color: #fff;
+}
+
+body.dark-mode #song-form input[type="text"],
+body.dark-mode #song-form input[type="number"],
+body.dark-mode #song-form textarea,
+body.dark-mode #song-form select,
+body.dark-mode .sidebar #search-bar {
+    background-color: #000;
+    color: #fff;
+    border-color: #333;
+}
+
+body.dark-mode #song-form .paste-ug-button {
+    background-color: #000;
+    color: #ffd59a;
+    border: 1px solid #ffb74d;
+}
+
+body.dark-mode .ocr-tool-button {
+    background-color: #000;
+    color: #8bbcff;
+    border: 1px solid #2d4f7d;
+}
+
+body.dark-mode .ocr-subtitle,
+body.dark-mode .ocr-status {
+    color: #ddd;
+}
+
+body.dark-mode .ocr-controls input[type="file"],
+body.dark-mode #ocr-output-area {
+    background-color: #000;
+    color: #fff;
+    border-color: #333;
+}
+
+body.dark-mode #ocr-preview-canvas {
+    border-color: #333;
+}
+
+body.dark-mode .ocr-action-bar .ocr-secondary {
+    background-color: #000;
+    border: 1px solid #444;
+    color: #ddd;
+}
+
+body.dark-mode .close-button {
+    color: #ccc;
+}
+
+body.dark-mode .close-button:hover {
+    color: #fff;
+}
+
+body.dark-mode .theme-toggle-button {
+    background-color: #000;
+    border-color: #333;
+}
+
+body.dark-mode .theme-toggle-button .theme-toggle-knob {
+    background-color: #fff;
+    border-color: #444;
+}
+
+body.dark-mode .chord-tooltip {
+    background-color: #000;
+    color: #fff;
+    border-color: #444;
+}
